@@ -15,56 +15,80 @@ class Contact {
         return this._firstName;
     }
     set firstName(firstName) {
-        this._firstName = firstName;
+        const firstNamePattern = RegExp("^[A-Z]{1}[a-z]{2,}$");
+        if (firstNamePattern.test(firstName)) 
+            this._firstName = firstName;
+        else throw "Invalid First Name";
     }
 
     get lastName() {
         return this._lastName;
     }
     set lastName(lastName) {
-        this._lastName = lastName;
+        const lastNamePattern = RegExp("^[A-Z]{1}[a-z]{2,}$");
+        if (lastNamePattern.test(lastName)) 
+            this._lastName = lastName;
+        else throw "Invalid Last Name";
     }
 
     get address() {
         return this._address;
     }
     set address(address) {
-        this._address = address;
+        const addressPattern = RegExp("^[A-Z]{1}[a-z]{3,}$");
+        if (addressPattern.test(address))
+            this._address = address;
+        else throw "Invalid Address";
     }
 
     get city() {
         return this._city;
     }
     set city(city) {
-        this._city = city;
+        const cityPattern = RegExp("^[A-Z]{1}[a-z]{3,}$");
+        if (cityPattern.test(city))
+            this._city = city;
+        else throw "Invalid City";
     }
 
     get state() {
         return this._state;
     }
     set state(state) {
-        this._state = state;
+        const statePattern = RegExp("^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$");
+        if( statePattern.test(state))
+            this._state = state;
+        else throw "Invalid State";
     }
 
     get zip() {
         return this._zip;
     }
     set zip(zip) {
-        this._zip = zip;
+        const pinPattern = RegExp("^([1-9])(\\S){2}(\\s)?\\S{2}[0-9]$");
+        if(pinPattern.test(zip))
+            this._zip = zip;
+        else throw "Invalid Zip"
     }
 
     get phoneNumber() {
         return this._phoneNumber;
     }
     set phoneNumber(phoneNumber) {
-        this._phoneNumber = phoneNumber;
+        const phonePattern = RegExp("^[1-9]{1}[0-9]{9}$");
+        if(phonePattern.test(phoneNumber))
+            this._phoneNumber = phoneNumber;
+        else throw "Invalid Phone Number";
     }
 
     get email() {
         return this._email;
     }
     set email(email) {
-        this._email = email;
+        const emailPattern = RegExp("^([a-z]){1,}[a-z0-9]*([.+_-]){0,1}[0-9a-z]+(@){1}([0-9a-z]+)(\\.([a-z]){2,}){1}(\\.[a-z]{2,})?$");
+        if(emailPattern.test(email))
+            this._email = email;
+        else throw "Invalid EmailID";
     }
 
     toString(){
@@ -73,5 +97,9 @@ class Contact {
     }
 }
 
+try {
 let contact = new Contact("Nishi", "Gautam", "Mayur", "Lucknow", "UP", "627361", "8732671298", "nishigautam@gmail.com");
 console.log(contact.toString());
+} catch (e) {
+    console.error(e);
+}
